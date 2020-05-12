@@ -24,6 +24,10 @@ Plugin 'blueyed/vim-diminactive'
 
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 
+Plugin 'vim-syntastic/syntastic'
+
+Plugin 'godlygeek/tabular'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -81,3 +85,13 @@ set clipboard=unnamed
 
 " Tmux focus
 let g:diminactive_enable_focus = 1
+
+" Syntastic config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
