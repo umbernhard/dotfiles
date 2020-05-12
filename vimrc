@@ -60,7 +60,11 @@ colorscheme harlequin
 " Do spell checking
 set spelllang=en
 set spellfile=~/.vim/spell/en.utf-8.add
-set spell
+
+" Check spelling in certain files
+autocmd FileType *.md setlocal spell
+autocmd FileType *.tex setlocal spell
+syntax spell toplevel
 
 set expandtab
 set ts=4
@@ -70,3 +74,4 @@ set colorcolumn=80
 set nu rnu
 
 set clipboard=unnamed
+
