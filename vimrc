@@ -20,6 +20,9 @@ Plugin 'luochen1990/rainbow'
 
 Plugin 'nathanaelkane/vim-indent-guides'
 
+Plugin 'blueyed/vim-diminactive'
+
+Plugin 'tmux-plugins/vim-tmux-focus-events'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -75,3 +78,6 @@ set nu rnu
 
 set clipboard=unnamed
 
+
+" Tmux focus
+let g:diminactive_enable_focus = 1
