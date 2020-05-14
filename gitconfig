@@ -3,3 +3,8 @@
 	name = Matt Bernhard
 [core]
 	editor = vim
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
