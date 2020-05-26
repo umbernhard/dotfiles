@@ -28,6 +28,9 @@ Plugin 'vim-syntastic/syntastic'
 
 Plugin 'godlygeek/tabular'
 
+Plugin 'salsifis/vim-transpose'
+
+
 Plugin 'itchyny/lightline.vim'
 
 " All of your Plugins must be added before the following line
@@ -129,6 +132,16 @@ set noerrorbells visualbell t_vb=
 set splitbelow
 set splitright
 
+" Always strip traling whitespace on save for certain files
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    keepp %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
 " quicker window movement
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -145,11 +158,11 @@ highlight StatusLineNC cterm=bold ctermfg=245 ctermbg=235
 let g:diminactive_enable_focus = 1
 
 " Syntastic config
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
