@@ -30,6 +30,7 @@ Plugin 'godlygeek/tabular'
 
 Plugin 'salsifis/vim-transpose'
 
+Plugin 'Glench/Vim-Jinja2-Syntax'
 
 Plugin 'itchyny/lightline.vim'
 
@@ -83,7 +84,7 @@ autocmd FileType *.md setlocal spell
 autocmd FileType *.tex setlocal spell
 syntax spell toplevel
 
-set textwidth=80
+"set textwidth=80
 set colorcolumn=80  
 set nu rnu
 
@@ -95,7 +96,7 @@ set shortmess+=I " disable startup message
 set incsearch " incremental search (as string is being typed)
 set hls " highlight search
 set listchars=tab:>>,nbsp:~ " set list to see tabs and non-breakable spaces
-set lbr " line break
+"set lbr " line break
 set scrolloff=5 " show lines above and below cursor (when possible)
 set noshowmode " hide mode
 set laststatus=2
@@ -166,3 +167,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['python']
+let g:syntastic_python_python_exec = 'python3'
+
+" YAML specific config
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

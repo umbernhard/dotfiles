@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/matt/.zoom/data'
+let g:netrw_dirhist_3='/home/matt/.zoom'
+let g:netrw_dirhist_2='/home/matt/.zoom/data'
+let g:netrw_dirhist_1='/home/matt/Workspace/sigver/paper'
+let g:netrw_dirhist_0='/home/matt/Workspace/election-audits/.git/hooks'
+let g:netrw_dirhist_9='/home/matt/Workspace/microblog/app/templates'
+let g:netrw_dirhist_8='/home/matt/Workspace/microblog/app'
+let g:netrw_dirhist_7='/home/matt/Downloads/hplip-3.20.5'
+let g:netrw_dirhist_6='/home/matt/Workspace/flask-tutorial/flaskr'
+let g:netrw_dirhist_5='/home/matt/Workspace/arlo/config'
