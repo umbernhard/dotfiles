@@ -128,3 +128,10 @@ export EDITOR=$VISUAL
 
 alias tmux="TERM=screen-256color-bce tmux"
 alias open=xdg-open
+
+export ARLO_SUPERADMIN_AUTH0_BASE_URL=https://localhost:8080
+export ARLO_AUDITADMIN_AUTH0_BASE_URL=https://localhost:8080
+export ARLO_JURISDICTIONADMIN_AUTH0_BASE_URL=https://localhost:8080
+export ARLO_SESSION_SECRET="12345"
+export ARLO_HTTP_ORIGIN="http://localhost:3000"
+export FLASK_ENV="development"

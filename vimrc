@@ -34,6 +34,9 @@ Plugin 'Glench/Vim-Jinja2-Syntax'
 
 Plugin 'itchyny/lightline.vim'
 
+Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -80,8 +83,9 @@ set spelllang=en
 set spellfile=~/.vim/spell/en.utf-8.add
 
 " Check spelling in certain files
-autocmd FileType *.md setlocal spell
-autocmd FileType *.tex setlocal spell
+autocmd FileType md setlocal spell
+autocmd FileType tex setlocal spell
+autocmd FileType text setlocal spell
 syntax spell toplevel
 
 "set textwidth=80
@@ -169,6 +173,9 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['python']
 let g:syntastic_python_python_exec = 'python3'
+
+"let g:syntastic_tex_checkers = ['chktex', 'lacheck', 'proselint']
+let g:syntastic_tex_checkers = ['chktex', 'proselint']
 
 " YAML specific config
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
