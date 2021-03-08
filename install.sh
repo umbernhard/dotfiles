@@ -3,18 +3,26 @@
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # vim
-ln -s ${BASEDIR}/vimrc ~/.vimrc
-#ln -s ${BASEDIR}/vim/ ~/.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+ln -sf ${BASEDIR}/vimrc ~/.vimrc
+mkdir -p ~/.vim/colors
+cp vim/colors/harlequin.vim ~/.vim/colors/
+#ln -sf ${BASEDIR}/vim/ ~/.vim
 
 # bash
-ln -s ${BASEDIR}/bashrc ~/.bashrc
-ln -s ${BASEDIR}/bash_profile ~/.bash_profile
+ln -sf ${BASEDIR}/bashrc ~/.bashrc
+ln -sf ${BASEDIR}/bash_profile ~/.bash_profile
 
 # tmux
-ln -s ${BASEDIR}/tmux.conf ~/.tmux.conf
+ln -sf ${BASEDIR}/tmux.conf ~/.tmux.conf
 
 # ctags
-ln -s ${BASEDIR}/ctags.conf ~/.ctags
+ln -sf ${BASEDIR}/ctags.conf ~/.ctags
 
 # git
-ln -s ${BASEDIR}/gitconfig ~/.gitconfig
+ln -sf ${BASEDIR}/gitconfig ~/.gitconfig
+
+# git-prompt.sh
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git-prompt.sh
+
+source ~/.bashrc
