@@ -36,7 +36,7 @@ let s:brick = ['#CB4154', 167]
 
 let s:lilac = ['#AE81FF', 141]
 
-let s:frost = ['#2C89C7', 68] 
+let s:frost = ['#2C89C7', 39] 
 
 let s:sunny = ['#FFFC7F', 228]
 
