@@ -12,14 +12,17 @@ cp vim/colors/harlequin.vim ~/.vim/colors/
 # profile
 ln -sf ${BASEDIR}/profile ~/.profile
 
-# bash
-#ln -sf ${BASEDIR}/bashrc ~/.bashrc
-#ln -sf ${BASEDIR}/bash_profile ~/.bash_profile
-
-# TODO: dynamically detect shell?
-# zsh
-ln -sf ${BASEDIR}/zshrc ~/.zshrc
-ln -sf ${BASEDIR}/oh-my-zsh ~/.oh-my-zsh
+if [[ "$SHELL" == *"bash"* ]]; then
+    echo "Setting up bash"
+    ln -sf ${BASEDIR}/bashrc ~/.bashrc
+    ln -sf ${BASEDIR}/bash_profile ~/.bash_profile
+elif [[ "$SHELL" == *"zsh"* ]]; then
+    echo "Setting up zsh"
+    ln -sf ${BASEDIR}/zshrc ~/.zshrc
+    ln -sf ${BASEDIR}/oh-my-zsh ~/.oh-my-zsh
+else
+    echo "$SHELL not recognized"
+fi
 
 # tmux
 ln -sf ${BASEDIR}/tmux.conf ~/.tmux.conf
