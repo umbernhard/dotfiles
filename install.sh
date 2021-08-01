@@ -9,9 +9,17 @@ mkdir -p ~/.vim/colors
 cp vim/colors/harlequin.vim ~/.vim/colors/
 #ln -sf ${BASEDIR}/vim/ ~/.vim
 
+# profile
+ln -sf ${BASEDIR}/profile ~/.profile
+
 # bash
-ln -sf ${BASEDIR}/bashrc ~/.bashrc
-ln -sf ${BASEDIR}/bash_profile ~/.bash_profile
+#ln -sf ${BASEDIR}/bashrc ~/.bashrc
+#ln -sf ${BASEDIR}/bash_profile ~/.bash_profile
+
+# TODO: dynamically detect shell?
+# zsh
+ln -sf ${BASEDIR}/zshrc ~/.zshrc
+ln -sf ${BASEDIR}/oh-my-zsh ~/.oh-my-zsh
 
 # tmux
 ln -sf ${BASEDIR}/tmux.conf ~/.tmux.conf
