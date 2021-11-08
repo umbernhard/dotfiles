@@ -20,7 +20,7 @@ endif
 let g:colors_name = "harlequin"
 
 let s:text = ['#F8F8F2', 15]
-let s:text_bg = ['#1C1B1A', 234]
+let s:text_bg = ['#1C1B1A', 232]
 
 let s:white = ['#FFFFFF', 15]
 let s:black = ['#000000', 0]
