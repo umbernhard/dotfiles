@@ -254,3 +254,12 @@ include /etc/sway/config.d/*
 exec_always wlsunset
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec_always /usr/lib/xdg-desktop-portal-gtk
+
+# capture all screens to clipboard    
+bindsym Shift+Print exec grim - | wl-copy    
+    
+# capture the specified screen area to clipboard    
+bindsym Shift+Alt+Print exec grim -g "$(slurp)" - | wl-copy    
+    
+# capture the focused monitor to clipboard    
+bindsym Shift+Control+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy
