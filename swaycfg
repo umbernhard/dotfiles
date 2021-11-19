@@ -251,9 +251,11 @@ default_border none
 
 include /etc/sway/config.d/*
 
-exec_always wlsunset
+#exec_always wlsunset
+exec_always kanshi
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec_always /usr/lib/xdg-desktop-portal-gtk
+
 
 # capture all screens to clipboard    
 bindsym Shift+Print exec grim - | wl-copy    
@@ -263,3 +265,5 @@ bindsym Shift+Alt+Print exec grim -g "$(slurp)" - | wl-copy
     
 # capture the focused monitor to clipboard    
 bindsym Shift+Control+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy
+
+exec_always /usr/bin/gammastep-indicator -m wayland 
