@@ -16,6 +16,8 @@ Plugin 'tpope/vim-fugitive'
 
 Plugin 'tpope/vim-surround'
 
+Plugin 'tpope/vim-commentary'
+
 Plugin 'luochen1990/rainbow'
 
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -36,6 +38,10 @@ Plugin 'itchyny/lightline.vim'
 
 Plugin 'leafgarland/typescript-vim'
 Plugin 'peitalin/vim-jsx-typescript'
+
+Plugin 'chriskempson/base16-vim'
+
+Plugin 'ap/vim-css-color'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -78,6 +84,14 @@ let g:indent_guides_guide_size = 1
 syntax on
 colorscheme harlequin
 
+" unset the background so it inherits whatever the terminal's is
+hi Normal guibg=NONE ctermbg=NONE
+"colorscheme base16-unikitty-dark
+
+"let g:base16_shell_path=base16-builder/output/shell/
+" let base16colorspace=256  " Access colors present in 256 colorspace
+
+
 " Do spell checking
 set spelllang=en
 set spellfile=~/.vim/spell/en.utf-8.add
@@ -89,7 +103,7 @@ autocmd FileType text setlocal spell
 syntax spell toplevel
 
 "set textwidth=80
-set colorcolumn=80  
+set colorcolumn=80 
 set nu rnu
 
 set autoindent
