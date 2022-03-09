@@ -36,4 +36,10 @@ ln -sf ${BASEDIR}/gitconfig ~/.gitconfig
 # git-prompt.sh
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh > ~/.git-prompt.sh
 
-source ~/.bashrc
+if [[ "$SHELL" == *"bash"* ]]; then
+    source ~/.bashrc
+elif [[ "$SHELL" == *"zsh"* ]]; then
+    source ~/.zshrc
+else
+    echo "$SHELL not recognized"
+fi
