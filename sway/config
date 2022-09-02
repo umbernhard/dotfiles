@@ -18,16 +18,15 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-# set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu rofi -show drun -show-icons | xargs swaymsg exec --
+set $menu dmenu_path | mauncher-launcher | xargs swaymsg exec --
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output DP-3 resolution 3840x2160 position 1920,0 scale 2
-output DP-4 disable
-#output eDP-1 disable
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output eDP-1 bg /home/matt/Downloads/background.svg fill
+
+
 #
 # Example configuration:
 #
@@ -43,7 +42,8 @@ output DP-4 disable
           timeout 300 'swaylock -f -c 000000' \
           timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
           before-sleep 'swaylock -f -c 000000'
-
+#bindswitch --reload --locked lid:on exec swaylock -f -c 000000 && swaymsg "output * dpms off"
+#bindswitch --reload --locked lid:off exec swaymsg "output * dpms on" 
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -62,14 +62,26 @@ output DP-4 disable
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
-#
 input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
 	dwt enabled
 	tap enabled
-	natural_scroll enabled
-	middle_emulation enabeld
 	click_method clickfinger
+	scroll_method two_finger
+	natural_scroll enabled
+	middle_emulation enabled
+	tap_button_map lrm
 }
+
+
+#input "1:1:AT_Translated_Set_2_keyboard" {   
+#    xkb_layout us
+#}
+
+
+#seat * attach "0:6:Video_Bus" 
+#seat * attach "1:1:AT_Translated_Set_2_keyboard" 
+#seat * keyboard_grouping none
+
 
 ### Key bindings
 #
@@ -95,7 +107,7 @@ input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
@@ -207,63 +219,67 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+bindsym $mod+grave exec swaylock
+
 bindsym $mod+r mode "resize"
-
-bindsym $mod+Grave exec swaylock -f -c 000000
-
-
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+# set brightness logarithmically by factor 1.4
+# .72 is just slightly bigger than 1 / 1.4
+#bindsym --input-device="0:6:Video_Bus" XF86MonBrightnessDown exec brillo -U 10 
+#bindsym --input-device="0:6:Video_Bus" XF86MonBrightnessUp exec brillo -A 10 
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86Search exec bemenu-run
+bindsym XF86Search exec $menu
 
+bindsym --to-code Print exec 'grim -g "$(slurp)" ~/Screenshots/$(date +%Hh_%Mm_%Ss_%d_%B_%Y).png'
 
+bindsym --to-code $mod+Print exec 'grim -g "$(slurp)" - | swappy -f -'
 #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    swaybar_command waybar
-    position top
+bar swaybar_command waybar
+#bar {
+#    position top
+#    pango_markup enabled
+#
+#    # When the status_command prints a new line to stdout, swaybar updates.
+#    # The default just shows the current date and time.
+#    status_command while ~/.config/sway/swaybar.sh; do sleep 1; done
+#
+#
+#    font Cantarell 10
+#
+#    colors {
+#        statusline #ffffff
+#        background #000000
+#        inactive_workspace #000000 #000000 #FFFFFF
+#	focused_workspace #000000 #de8d1b #FFFFFF
+#    }
+#}
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
-
-gaps inner 10px
-smart_borders on
-smart_gaps on
 default_border none
+
+client.focused #de8d1b #be6d0baa #FFFFFF #2e9ef4 #285577
+client.unfocused #222222 #222222dd #FFFFFF #2e9ef4 #285577
 
 include /etc/sway/config.d/*
 
-#exec_always wlsunset
-exec_always kanshi
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-exec_always /usr/lib/xdg-desktop-portal-gtk
+exec_always libinput-gestures -c ~/.config/libinput-gestures.conf 
+exec export MOZ_ENABLE_WAYLAND=1
+exec gammastep
 
+set $gnome-schema org.gnome.desktop.interface
 
-# capture all screens to clipboard    
-bindsym Shift+Print exec grim - | wl-copy    
-    
-# capture the specified screen area to clipboard    
-bindsym Shift+Alt+Print exec grim -g "$(slurp)" - | wl-copy    
-    
-# capture the focused monitor to clipboard    
-bindsym Shift+Control+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy
-
-exec_always /usr/bin/gammastep-indicator -m wayland 
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
+    gsettings set $gnome-schema icon-theme 'Adwaita'
+}
+#exec /usr/libexec/xdg-desktop-portal-gtk
+exec /usr/libexec/xdg-desktop-portal-wlr

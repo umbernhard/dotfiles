@@ -1,0 +1,13 @@
+[Default]
+
+save_dir=~/Screenshots/swappy
+
+save_filename_format=%Hh_%Mm_%Ss_%d_%b_%y.png
+
+show_panel=true
+
+line_size=5
+
+text_size=20
+
+text_font="Ubuntu Condensed"
