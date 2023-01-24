@@ -12,3 +12,5 @@ cp -r nvim ~/.config/
 ./vimplug.sh
 
 sudo apt install build-essential -y
+
+export PATH=$PATH:~/.local/bin/
