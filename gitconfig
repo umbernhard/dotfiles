@@ -8,3 +8,6 @@
 	conflictstyle = diff3
 [mergetool]
 	prompt = false
+
+[gpg]
+	format = ssh
