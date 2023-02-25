@@ -65,7 +65,9 @@ window#waybar.chromium {
     border-bottom: 3px solid #ffffff;
 }
 
-#clock,
+#clock {
+    padding: 0 4 0 0px;
+}
 #battery,
 #cpu,
 #custom-gpu,
@@ -100,7 +102,7 @@ window#waybar.chromium {
 }
 
 #clock {
-    font-weight: 700;
+    /* font-weight: 700;*/
     background-color: #000000;
 }
 
