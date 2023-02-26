@@ -1,0 +1,1 @@
+matt ALL = NOPASSWD: /usr/bin/timeout, /usr/bin/intel_gpu_top

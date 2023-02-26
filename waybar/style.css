@@ -175,7 +175,7 @@ label:focus {
 #custom-gpu {
     background-color: #000000;
     color: #FFFFFF;
-    min-width: 50px;
+    /*  min-width: 50px; */
 }
 
 #custom-media {

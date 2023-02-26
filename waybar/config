@@ -7,7 +7,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "custom/media", "tray"],
     "modules-center": [],
-    "modules-right": [ "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "custom/gpu", "temperature", "backlight", "battery", "battery#bat2", "clock"],
+    "modules-right": [ "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/gpu", "custom/power", "battery", "battery#bat2", "clock"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -88,7 +88,7 @@
     },
     "temperature": {
         // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{icon} {temperatureC}°C",
@@ -158,10 +158,16 @@
     },
     "custom/gpu": {
         "exec": "sudo timeout 2 intel_gpu_top -l | tail -n 1 | awk -F '  +' '{print int($13)}'",
-        "format": "🖥 {}%",
+        "format": "󰍹  {}%",
 	"return-type": "text",
 	"interval": 3
-    }
+    },
+    "custom/power": {
+	"exec": "cat /sys/class/power_supply/BAT1/current_now | awk '{p = $1; printf(\"%.2f\", p/1000000)}'",
+	"format": "󱐋 {}A",
+	"interval": 3,
+	"return-type": "text",
+    },
 }
 
 
