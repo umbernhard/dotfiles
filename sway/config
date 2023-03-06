@@ -36,7 +36,7 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg
-output * bg /usr/share/backgrounds/default.png fill
+output * bg ~/.config/sway/piopiotah.png fill
 #
 
 #
@@ -51,9 +51,9 @@ output * bg /usr/share/backgrounds/default.png fill
 # Example configuration:
 #
  exec swayidle -w \
-          timeout 300 'swaylock -f -c 000000' \
+          timeout 300 'swaylock -f -i ~/.config/sway/piopiotah.png' \
           timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-          before-sleep 'swaylock -f -c 000000'
+          before-sleep 'swaylock -f -i ~/.config/sway/piopiotah.png '
 #bindswitch --reload --locked lid:on exec swaylock -f -c 000000 && swaymsg "output * dpms off"
 #bindswitch --reload --locked lid:off exec swaymsg "output * dpms on" 
 #
@@ -267,10 +267,14 @@ client.unfocused #222222 #222222dd #FFFFFF #2e9ef4 #285577
 
 include /etc/sway/config.d/*
 include /usr/share/sway/config.d/*
+include ~/.config/sway/config.d/*
 
 exec libinput-gestures-setup autostart start
 exec export MOZ_ENABLE_WAYLAND=1
 exec gammastep
+exec export GTK_THEME=Adwaita-dark
+# notification center
+exec swaync
 
 set $gnome-schema org.gnome.desktop.interface
 
@@ -278,5 +282,5 @@ exec_always {
     gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
     gsettings set $gnome-schema icon-theme 'Adwaita'
 }
-#exec /usr/libexec/xdg-desktop-portal-gtk
+exec /usr/libexec/xdg-desktop-portal-gtk
 exec /usr/libexec/xdg-desktop-portal-wlr
