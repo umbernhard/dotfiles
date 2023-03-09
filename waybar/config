@@ -8,6 +8,7 @@
     "modules-left": ["sway/workspaces", "sway/mode", "custom/media", "tray"],
     "modules-center": [],
     "modules-right": [ "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/gpu", "custom/power", "battery", "battery#bat2", "clock"],
+    //"modules-right": [ "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/power", "battery", "battery#bat2", "clock"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -75,7 +76,7 @@
     },
     "clock": {
         // "timezone": "America/New_York",
-	"format": "{:%b %d   %H:%M}",
+	"format": "{:%Y-%m-%d %H:%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         // "format-alt": "{:%Y-%m-%d}"
     },
@@ -157,10 +158,12 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/gpu": {
-        "exec": "sudo timeout 2 intel_gpu_top -l | tail -n 1 | awk -F '  +' '{print int($13)}'",
+        "exec": "~/.config/waybar/gpu.sh",
+	// "exec-if": "pgrep intel_gpu_top",
         "format": "󰍹  {}%",
-	"return-type": "text",
-	"interval": 3
+	// "return-type": "text",
+	"interval": 1,
+	// "signal": 8,
     },
     "custom/power": {
 	"exec": "cat /sys/class/power_supply/BAT1/current_now | awk '{p = $1; printf(\"%.2f\", p/1000000)}'",
